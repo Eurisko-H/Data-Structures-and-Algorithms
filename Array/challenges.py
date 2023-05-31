@@ -83,7 +83,6 @@ def get_count(sentence):
 
 """
 
-
 """
 Challenge #5:
 
@@ -104,4 +103,25 @@ def max_and_min(input_str):
     nums = list(map(int, input_str.split(' ')))
     return f"{max(nums)} {min(nums)}"
 """
+
+"""
+Describe the difference between an in-place algorithm and out-of-place algorithm.
+
+def double_nums_in_place(int_list):
+    # in place will modify the array that's passed in to the function
+    # Save space / faster
+    # https://en.wikipedia.org/wiki/In-place_algorithm
+    for idx, item in enumerate(int_list):
+        int_list[idx] = item * 2
+
+
+def double_nums_out_of_place(int_list):
+    # Create a new array, and modify it, then we must return it.
+    return list(map(lambda item: item * 2, int_list))
+"""
+
+
+
+
+
 
