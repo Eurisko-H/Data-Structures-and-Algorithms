@@ -179,6 +179,7 @@ def pivot_index_reflect(nums: list[int]) -> int:
 """
 # https://leetcode.com/problems/plus-one/
 
+# BigO -> O(n)
 def plus_one(digits: list[int]) -> list[int]:
     for idx in range(len(digits) - 1, -1, -1):
         if digits[idx] < 9:
@@ -189,3 +190,35 @@ def plus_one(digits: list[int]) -> list[int]:
     digits.insert(0, 1)
     return digits
 """
+
+
+"""
+A palindrome is a word, phrase, number, or another sequence of characters that reads the
+same backward or forward. This includes capital letters, punctuation. and other special character.
+
+Given a string. write a unction that checks if the input is valid palindrome.
+
+Examples:
+- "racecar"    -> True
+- "anna"       -> True
+- "12345"      -> False
+- "12321"      -> True
+- "race a car" -> False
+
+Notes:
+- Try to solve this challenge without using the reverse of the input string; use a for loop
+to iterate through the string and make the neccessary companions
+
+# BigO -> O(n)
+def is_palindrome(word: str) -> bool:
+    start_index, end_index = 0, len(word)-1
+    while start_index < end_index:
+        if word[start_index] != word[end_index]:
+            return False
+        start_index += 1
+        end_index -= 1
+    return True
+"""
+
+
+
