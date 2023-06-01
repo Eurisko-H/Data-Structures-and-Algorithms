@@ -78,7 +78,7 @@ The input string will only consist of lower case letters and/or spaces.
 
 sentence = 'auidah kEoLmno'
 
-def get_count(sentence):
+def get_count(sentence: str) -> int:
     return sum(map(lambda x: x.lower() in "aeiou", sentence))
 
 """
@@ -99,7 +99,7 @@ Notes:
 - The return string must be two numbers separated by a single space, and
 the maximum number is first.
 
-def max_and_min(input_str):
+def max_and_min(input_str: str) -> str:
     nums = list(map(int, input_str.split(' ')))
     return f"{max(nums)} {min(nums)}"
 """
@@ -120,8 +120,59 @@ def double_nums_out_of_place(int_list):
     return list(map(lambda item: item * 2, int_list))
 """
 
+"""
+Given an array of integers 'nums', define a function that returns the "pivot" index of the array.
+
+The "pivot" index is where the sum of all the numbers on the left of that index is equal
+to the sum of all the numbers on the right of that index.
+
+If the input array does not have a "pivot" index, then the function should return '-1'.
+If there are more than one "pivot" indexes, then you should return the left-most "pivot" index.
+
+Example 1:
+
+Input: nums = [1,7,3,6,5,6]
+Output: 3
+Explanation:
+The sum of hte numbers to the left of index 3 (1 + 7 + 3 = 11) is equal
+to the sum of numbers to the right of index 3 (5 + 6 = 11).
+Also, 3 is the first index where this occurs.
+
+Example 2:
+Input: nums = [1,2,3]
+Output: -1
+Explanation:
+There is no index that satisfies the conditions in the problem statement.
 
 
+# BigO -> O(n^2)
+def pivot_index(nums):
+    for idx in range(len(nums)):
+        # all numbers to the left of index
+        left = nums[:idx]
+        # all numbers to the right
+        right = nums[idx + 1:]
+        # sum the numbers to the left & right
+        if sum(left) == sum(right):
+            return idx
+        else:
+            continue
+    return -1
+
+# BigO -> O(n)
+def pivot_index_reflect(nums):
+    left_sum = 0
+    right_sum = sum(nums)
+    for idx in range(len(nums)):
+        # Everytime we get to a new index
+        # subtract that index, from the right_sum
+        right_sum -= nums[idx]
+        if left_sum == right_sum:
+            return idx
+        # Add the index to the left_sum
+        left_sum += nums[idx]
+    return -1
+"""
 
 
 
