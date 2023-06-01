@@ -121,6 +121,8 @@ def double_nums_out_of_place(int_list):
 """
 
 """
+Challenge #6:
+
 Given an array of integers 'nums', define a function that returns the "pivot" index of the array.
 
 The "pivot" index is where the sum of all the numbers on the left of that index is equal
@@ -146,7 +148,7 @@ There is no index that satisfies the conditions in the problem statement.
 
 
 # BigO -> O(n^2)
-def pivot_index(nums):
+def pivot_index(nums: list[int]) -> int:
     for idx in range(len(nums)):
         # all numbers to the left of index
         left = nums[:idx]
@@ -160,7 +162,7 @@ def pivot_index(nums):
     return -1
 
 # BigO -> O(n)
-def pivot_index_reflect(nums):
+def pivot_index_reflect(nums: list[int]) -> int:
     left_sum = 0
     right_sum = sum(nums)
     for idx in range(len(nums)):
@@ -174,5 +176,16 @@ def pivot_index_reflect(nums):
     return -1
 """
 
+"""
+# https://leetcode.com/problems/plus-one/
 
-
+def plus_one(digits: list[int]) -> list[int]:
+    for idx in range(len(digits) - 1, -1, -1):
+        if digits[idx] < 9:
+            digits[idx] += 1
+            return digits
+        else:
+            digits[idx] = 0
+    digits.insert(0, 1)
+    return digits
+"""
