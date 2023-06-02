@@ -12,6 +12,7 @@ Examples:
 Notes:
 - Return "invalid" if n exceeds the length of the list.
 - Return an empty list if n == 0
+"""
 
 
 def last(l: list, n: int) -> []:
@@ -22,7 +23,6 @@ def last(l: list, n: int) -> []:
     else:
         return l[-n:]
 
-"""
 
 """
 Challenge #2:
@@ -37,11 +37,12 @@ Examples:
 
 Notes:
 - The input list will only contain integers.
+"""
 
 
 def add_indexes(numbers: list) -> list:
-    return [idx+num for idx, num in enumerate(numbers)]
-"""
+    return [idx + num for idx, num in enumerate(numbers)]
+
 
 """
 Challenge #3:
@@ -56,15 +57,16 @@ Examples:
 
 Notes:
 - Bonus: Try to complete this challenge in on line!
-
+"""
 
 from functools import reduce
 from operator import mul
 
+
 def multiply_nums(numbers: str) -> int:
     nums = numbers.split(', ')
     return reduce(mul, map(int, nums))
-"""
+
 
 """
 Challenge #4:
@@ -74,14 +76,14 @@ Return the number (count) of vowels in the given string.
 We will consider 'a,e,i,o,u as vowels for this challenge (but not y).
 
 The input string will only consist of lower case letters and/or spaces.
-
+"""
 
 sentence = 'auidah kEoLmno'
+
 
 def get_count(sentence: str) -> int:
     return sum(map(lambda x: x.lower() in "aeiou", sentence))
 
-"""
 
 """
 Challenge #5:
@@ -98,15 +100,15 @@ Notes:
 - There will always be at least one number in the input string.
 - The return string must be two numbers separated by a single space, and
 the maximum number is first.
+"""
+
 
 def max_and_min(input_str: str) -> str:
     nums = list(map(int, input_str.split(' ')))
     return f"{max(nums)} {min(nums)}"
-"""
 
-"""
-Describe the difference between an in-place algorithm and out-of-place algorithm.
 
+# Describe the difference between an in-place algorithm and out-of-place algorithm.
 def double_nums_in_place(int_list):
     # in place will modify the array that's passed in to the function
     # Save space / faster
@@ -118,7 +120,7 @@ def double_nums_in_place(int_list):
 def double_nums_out_of_place(int_list):
     # Create a new array, and modify it, then we must return it.
     return list(map(lambda item: item * 2, int_list))
-"""
+
 
 """
 Challenge #6:
@@ -145,6 +147,7 @@ Input: nums = [1,2,3]
 Output: -1
 Explanation:
 There is no index that satisfies the conditions in the problem statement.
+"""
 
 
 # BigO -> O(n^2)
@@ -161,6 +164,7 @@ def pivot_index(nums: list[int]) -> int:
             continue
     return -1
 
+
 # BigO -> O(n)
 def pivot_index_reflect(nums: list[int]) -> int:
     left_sum = 0
@@ -174,25 +178,10 @@ def pivot_index_reflect(nums: list[int]) -> int:
         # Add the index to the left_sum
         left_sum += nums[idx]
     return -1
-"""
-
-"""
-# https://leetcode.com/problems/plus-one/
-
-# BigO -> O(n)
-def plus_one(digits: list[int]) -> list[int]:
-    for idx in range(len(digits) - 1, -1, -1):
-        if digits[idx] < 9:
-            digits[idx] += 1
-            return digits
-        else:
-            digits[idx] = 0
-    digits.insert(0, 1)
-    return digits
-"""
 
 
 """
+# Challenge #7:
 A palindrome is a word, phrase, number, or another sequence of characters that reads the
 same backward or forward. This includes capital letters, punctuation. and other special character.
 
@@ -208,17 +197,72 @@ Examples:
 Notes:
 - Try to solve this challenge without using the reverse of the input string; use a for loop
 to iterate through the string and make the neccessary companions
+"""
+
 
 # BigO -> O(n)
 def is_palindrome(word: str) -> bool:
-    start_index, end_index = 0, len(word)-1
+    start_index, end_index = 0, len(word) - 1
     while start_index < end_index:
         if word[start_index] != word[end_index]:
             return False
         start_index += 1
         end_index -= 1
     return True
-"""
 
 
+# https://leetcode.com/problems/plus-one/
+# BigO -> O(n)
+def plus_one(digits: list[int]) -> list[int]:
+    for idx in range(len(digits) - 1, -1, -1):
+        if digits[idx] < 9:
+            digits[idx] += 1
+            return digits
+        else:
+            digits[idx] = 0
+    digits.insert(0, 1)
+    return digits
 
+
+# https://leetcode.com/problems/maximum-subarray/
+
+# BigO -> O(n^2)
+def max_sub_array_brute_force(nums: list[int]) -> int:
+    max_sub = nums[0]
+    for size in range(1, len(nums) + 1):
+        for i in range(0, len(nums) - size + 1):
+            sub_sum = sum(nums[i: i + size])
+            if sub_sum > max_sub:
+                max_sub = sub_sum
+    return max_sub
+
+
+# BigO -> O(n)
+def max_sub_array_clever(nums: list[int]) -> int:
+    best_sum = nums[0]
+    current_best_sum = nums[0]
+    for num in nums[1:]:
+        if current_best_sum + num > num:
+            current_best_sum = current_best_sum + num
+        else:
+            current_best_sum = num
+        if current_best_sum > best_sum:
+            best_sum = current_best_sum
+    return best_sum
+
+
+# https://leetcode.com/problems/move-zeroes/
+# BigO -> O(n)
+def move_zeroes(nums: list[int]) -> None:
+    # Do not return anything, modify nums in-place instead.
+
+    zero_count = nums.count(0)
+    zero_index = 0
+    # O(n)
+    for num in nums:
+        if num != 0:
+            nums[zero_index] = num
+            zero_index += 1
+    # O(1)
+    for zero in range(1, zero_count + 1):
+        nums[-zero] = 0
