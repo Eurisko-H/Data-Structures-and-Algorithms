@@ -78,7 +78,7 @@ We will consider 'a,e,i,o,u as vowels for this challenge (but not y).
 The input string will only consist of lower case letters and/or spaces.
 """
 
-sentence = 'auidah kEoLmno'
+# sentence = 'auidah kEoLmno'
 
 
 def get_count(sentence: str) -> int:
@@ -241,11 +241,16 @@ def max_sub_array_brute_force(nums: list[int]) -> int:
 def max_sub_array_clever(nums: list[int]) -> int:
     best_sum = nums[0]
     current_best_sum = nums[0]
+    # loop through each value
     for num in nums[1:]:
+        # every time we see a new value, we have to learn something
+        # We have to decide, to add the new number to our current best sum
         if current_best_sum + num > num:
             current_best_sum = current_best_sum + num
         else:
+            # Or,start fresh, with just this number as our new current best sum
             current_best_sum = num
+            # if current_best_sum is even bigger that best_sum
         if current_best_sum > best_sum:
             best_sum = current_best_sum
     return best_sum
@@ -266,3 +271,16 @@ def move_zeroes(nums: list[int]) -> None:
     # O(1)
     for zero in range(1, zero_count + 1):
         nums[-zero] = 0
+
+
+# https://leetcode.com/problems/best-time-to-buy-and-sell-stock/?envType=list&envId=regnb1dt
+# BigO -> O(n)
+def max_profit(prices: list[int]) -> int:
+    current_buy = prices[0]
+    profit = 0
+    for price in prices:
+        if price < current_buy:
+            current_buy = price
+        elif (price - current_buy) > profit:
+            profit = price - current_buy
+    return profit

@@ -75,7 +75,7 @@ Peters, is the algorithm that Python’s sort() method uses.)
 """
 
 """
-O(n2), Polynomial Time
+O(n^2), Polynomial Time
 Checking for duplicate books on an unsorted bookshelf is a polynomial
 time operation. If there are 100 books, you could start with the first book
 and compare it with the 99 other books to see whether they’re the same.
@@ -103,7 +103,7 @@ O(n3); or other polynomial time complexities.
 """
 
 """
-O(2n), Exponential Time
+O(2^n), Exponential Time
 Taking photos of the shelf with every possible combination of books on it is
 an exponential time operation. Think of it this way: each book on the shelf
 can either in be included in the photo or not included. Figure 13-1 shows
