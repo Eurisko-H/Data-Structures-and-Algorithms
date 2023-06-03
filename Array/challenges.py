@@ -78,6 +78,7 @@ We will consider 'a,e,i,o,u as vowels for this challenge (but not y).
 The input string will only consist of lower case letters and/or spaces.
 """
 
+
 # sentence = 'auidah kEoLmno'
 
 
@@ -284,3 +285,23 @@ def max_profit(prices: list[int]) -> int:
         elif (price - current_buy) > profit:
             profit = price - current_buy
     return profit
+
+
+# https://leetcode.com/problems/two-sum/?envType=list&envId=regnb1dt
+
+# BigO -> O(n^2)
+def two_sum_brute_force(nums: list[int], target: int) -> list[int]:
+    for i in range(len(nums) - 1):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return [i, j]
+
+
+# BigO -> O(n)
+def two_sum_dic_way(nums: list[int], target: int) -> list[int]:
+    seen = {}
+    for i, num in enumerate(nums):
+        if target - num in seen:
+            return [seen[target - num], i]
+        elif num not in seen:
+            seen[num] = i
