@@ -305,3 +305,12 @@ def two_sum_dic_way(nums: list[int], target: int) -> list[int]:
             return [seen[target - num], i]
         elif num not in seen:
             seen[num] = i
+
+
+# BigO -> O(n)
+def can_jump_greedy(nums: list[int]) -> bool:
+    goal = nums[-1]
+    for i in range(len(nums) - 1, -1, -1):
+        if i + nums[i] >= goal:
+            goal = i
+    return True if goal == 0 else False
