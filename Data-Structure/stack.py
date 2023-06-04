@@ -65,6 +65,9 @@ class AStack:
             return None
         return self.item[-1]
 
+    def empty(self):
+        return True if len(self.item) == 0 else False
+
 
 stack = AStack()
 
@@ -72,8 +75,21 @@ stack.push('A')
 stack.push('B')
 stack.push('C')
 
+# print(f"The top of the stack is {stack.peek()}")
+# print(f"Remove the value from the top")
+# print(f"removed value is {stack.pop()}")
+# print(f"The top of the stack is {stack.peek()}")
 
-print(f"The top of the stack is {stack.peek()}")
-print(f"Remove the value from the top")
-print(f"removed value is {stack.pop()}")
-print(f"The top of the stack is {stack.peek()}")
+
+def valid_bracket_sequence(symbol: str) -> bool:
+    s = AStack()
+    close_to_open = {')': '(', '}': '{', ']': '['}
+    for c in symbol:
+        if c in close_to_open:
+            if not s.empty() and close_to_open[c] == s.peek():
+                s.pop()
+            else:
+                return False
+        else:
+            s.push(c)
+    return True if s.empty() else False
