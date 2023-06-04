@@ -102,3 +102,16 @@ b.next = c
 # print_list_recursive(a)
 # new_head = reverse(a)
 # print_list_recursive(new_head)
+
+
+# https://leetcode.com/problems/linked-list-cycle/?envType=list&envId=rohd04ig
+
+def has_cycle(link_list) -> bool:
+    # Floyd's Tortoise and Hare algorithm
+    slow, fast = link_list, link_list
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            return True
+    return False
