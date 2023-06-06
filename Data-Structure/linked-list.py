@@ -25,9 +25,10 @@ def print_list_recursive(start_node):
 head = LinkListNode(6)
 tail = head
 
-head = insert_at_head(head, 5)
 head = insert_at_head(head, 4)
 head = insert_at_head(head, 3)
+print_list_recursive(head)
+print('---------------')
 
 tail = insert_at_tail(tail, 7)
 
@@ -99,6 +100,7 @@ c = LinkListNode('c')
 a.next = b
 b.next = c
 
+
 # print_list_recursive(a)
 # new_head = reverse(a)
 # print_list_recursive(new_head)
@@ -115,3 +117,49 @@ def has_cycle(link_list) -> bool:
         if slow == fast:
             return True
     return False
+
+
+"""
+You have a single linked list L, which is sorted in strictly increasing order, and a integer value.
+Add value to the list L, preserving its original sorting
+
+Notes:
+1- Your solution should have O(n) time complexity
+2- in the example below the linked list presented as array for simplicity
+
+Example:
+- l = [1, 3, 4, 6] value = 5 -> output: [1, 2, 4, 5, 6]   # In the middle
+- l = [1, 3, 4, 6] value = 10 -> output: [1, 2, 4, 6, 10] # In the end
+- l = [1, 3, 4, 6] value = 0 -> output: [0, 1, 2, 4, 6]   # In the start
+"""
+
+
+def insert_value_into_sorted_linked_list(linked_list, value):
+    current_node = linked_list
+    new_node = LinkListNode(value)
+
+    # if the linked list is empty
+    if linked_list is None:
+        return new_node
+
+    # if the value is greater than the linked list head
+    if new_node.value < current_node.value:
+        new_node.next = current_node
+        return new_node
+
+    while current_node.next:
+        next_node = current_node.next
+        if next_node.value > new_node.value:
+            current_node.next = new_node
+            new_node.next = next_node
+            return linked_list
+        else:
+            current_node = current_node.next
+
+    # add the node to end of our list
+    current_node.next = new_node
+    return linked_list
+
+
+head = insert_value_into_sorted_linked_list(head, 5)
+# print_list_recursive(head)
