@@ -64,3 +64,19 @@ surnames = [
 ]
 
 
+# Return the nth fibonacci number
+def fib(n: int):
+    # base case
+    if n <= 1:
+        return n
+    else:
+        return fib(n - 1) + fib(n - 2)
+
+
+# palindrome recursively
+def is_palindrome(s: str):
+    # base case
+    if len(s) <= 1:
+        return True
+    else:
+        return (s[0] == s[len(s) - 1]) and (is_palindrome(s[1:-1]))
