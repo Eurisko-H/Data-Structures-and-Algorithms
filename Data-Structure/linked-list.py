@@ -1,5 +1,5 @@
 class LinkListNode:
-    def __init__(self, value):
+    def __init__(self, value, next=None):
         self.value = value
         self.next = None
 
@@ -27,8 +27,6 @@ tail = head
 
 head = insert_at_head(head, 4)
 head = insert_at_head(head, 3)
-print_list_recursive(head)
-print('---------------')
 
 tail = insert_at_tail(tail, 7)
 
@@ -162,4 +160,22 @@ def insert_value_into_sorted_linked_list(linked_list, value):
 
 
 head = insert_value_into_sorted_linked_list(head, 5)
+
+
 # print_list_recursive(head)
+
+
+# https://leetcode.com/problems/remove-linked-list-elements/
+def remove_element(link_list, val: int):
+    # create a dummy node
+    dummy_node = LinkListNode(None)
+    dummy_node.next = link_list
+    prev_node, curr_node = dummy_node, link_list
+    while curr_node:
+        next_node = curr_node.next
+        if curr_node.value == val:
+            prev_node.next = next_node
+        else:
+            prev_node = curr_node
+        curr_node = curr_node.next
+    return dummy_node.next
