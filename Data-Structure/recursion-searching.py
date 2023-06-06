@@ -64,13 +64,26 @@ surnames = [
 ]
 
 
-# Return the nth fibonacci number
-def fib(n: int):
+# Return the nth fibonacci number: BigO -> O(2^n) Exponential Time
+def recursive_fib(n: int):
     # base case
     if n <= 1:
         return n
     else:
-        return fib(n - 1) + fib(n - 2)
+        return recursive_fib(n - 1) + recursive_fib(n - 2)
+
+
+def iterative_fib(n):
+    n_1 = 1
+    n_2 = 0
+    current_n = n_1 + n_2
+    if n <= 1:
+        return n
+    for i in range(2, n):
+        n_2 = n_1
+        n_1 = current_n
+        current_n = n_1 + n_2
+    return current_n
 
 
 # palindrome recursively
@@ -80,3 +93,32 @@ def is_palindrome(s: str):
         return True
     else:
         return (s[0] == s[len(s) - 1]) and (is_palindrome(s[1:-1]))
+
+
+"""
+For a given possible integer (n) determine if it can be represented as a sum of two Fibonacci numbers
+(possibly equal)
+
+Example:
+- For n = 1  -> fibonacci_simple_sum_2(n) =  True  (1 = 0 + 1)
+- For n = 11 -> fibonacci_simple_sum_2(n) =  True  (11 = 8 + 3)
+- For n = 60 -> fibonacci_simple_sum_2(n) =  True  (60 = 5 + 55)
+- For n = 66 -> fibonacci_simple_sum_2(n) =  False 
+"""
+
+
+# In every searching problems you have to think about, searching for what? and where?
+def fibonacci_simple_sum_2(target):
+    useful_nums = set()
+    fib_index = 0
+    while True:
+        fib_num = iterative_fib(fib_index)
+        if fib_num > target:
+            break
+        useful_nums.add(fib_num)
+        fib_index += 1
+
+    for num in useful_nums:
+        if (target - num) in useful_nums:
+            return True
+    return False
