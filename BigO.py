@@ -8,7 +8,6 @@
 7. O(n!), Factorial Time (the highest order)
 """
 
-
 """
 O(1), Constant Time
 Finding out “Is the bookshelf empty?” is a constant time operation. It
@@ -46,7 +45,6 @@ half of the n input to work on and then another half from that half, and so
 on. Log n operations scale nicely: the workload n can double in size, but the
 runtime increases by only one step.
 """
-
 
 """
 O(n), Linear Time
@@ -129,41 +127,51 @@ of three books.
 
 
 # Examples:
-"""O(n), Linear Time
-def readingList(books):
+# O(n), Linear Time
+def reading_list(books):
     print('Here are the books I will read:')  # 1 step
-    numberOfBooks = 0                         # 1 step
-    for book in books:                        # n * steps in the loop
-        print(book)                           # 1 step
-        numberOfBooks += 1                    # 1 step
-    print(numberOfBooks, 'books total.')      # 1 step
-"""
+    number_of_books = 0  # 1 step
+    for book in books:  # n * steps in the loop
+        print(book)  # 1 step
+        number_of_books += 1  # 1 step
+    print(number_of_books, 'books total.')  # 1 step
 
-"""
-def quadraticExample(someData):  O(n2), Polynomial Time
-    for i in someData:       
+
+# O(n^2), Polynomial Time
+def quadratic_example(someData):
+    for i in someData:
         for j in someData:
             print('Something')
             print('Something')
             print('Something')
 
-def linearExample(someData):  O(n), Linear Time
+
+#  O(n), Linear Time
+def linear_example(someData):
     for i in someData:
         for k in range(1000):
             print('Something')
-"""
 
-""" O(1), Constant Time
-def iLoveBooks(books):
+
+# O(1), Constant Time
+def i_love_books(books):
     for i in range(10):
         print('I LOVE BOOKS!!!')
         print('BOOKS ARE GREAT!!!')
-"""
 
-""" O(n2) polynomial time operation
-def findDuplicateBooks(books):
-    for i in range(books):   
-        for j in range(i + 1, books):
+
+# O(n2) polynomial time operation
+def find_duplicate_books(books):
+    for i in range(len(books) - 1):
+        for j in range(i + 1, len(books)):
             if books[i] == books[j]:
                 print('Duplicate:', books[i])
-"""
+
+
+book_titles = []
+
+with open('books.txt', 'r') as rf:
+    for book in rf:
+        book_titles.append(book.strip())
+
+# Test the above function to see by your self:
