@@ -3,8 +3,8 @@
 2. O(log n), Logarithmic Time
 3. O(n), Linear Time
 4. O(n log n), N-Log-N Time
-5. O(n2), Polynomial Time
-6. O(2n), Exponential Time
+5. O(n^2), Polynomial Time
+6. O(2^n), Exponential Time
 7. O(n!), Factorial Time (the highest order)
 """
 
@@ -62,7 +62,7 @@ can think of a O(n log n) task as a O(log n) task that must be performed n
 times. Here’s a casual description of why.
 Start with a stack of books to alphabetize and an empty bookshelf.
 Follow the steps for a binary search algorithm, as detailed in “O(log n),
-Logarithmic” on page 232, to find where a single book belongs on the
+Logarithmic” to find where a single book belongs on the
 shelf. This is an O(log n) operation. With n books to alphabetize, and each
 book taking log n steps to alphabetize, it takes n × log n, or n log n, steps
 to alphabetize the entire set of books. Given twice as many books, it takes
@@ -81,23 +81,22 @@ Then you take the second book and check whether it’s the same as any of
 the 99 other books. Checking for a duplicate of a single book is 99 steps
 (we’ll round this up to 100, which is our n in this example). We have to
 do this 100 times, once for each book. So the number of steps to check
-for any duplicate books on the bookshelf is roughly n × n, or n2 . (This
-approximation to n2 still holds even if we were clever enough not to repeat
+for any duplicate books on the bookshelf is roughly n × n, or n^2 . (This
+approximation to n^2 still holds even if we were clever enough not to repeat
 comparisons.)
 The runtime increases by the increase in books squared. Checking
 100 books for duplicates is 100 × 100, or 10,000 steps. But checking twice
 that amount, 200 books, is 200 × 200, or 40,000 steps: four times as
 much work.
 In my experience writing code in the real world, I’ve found the most com-
-mon use of big O analysis is to avoid accidentally writing an O(n2) algorithm
-when an O(n log n) or O(n) algorithm exists. The O(n2) order is when algorithms dramatically slow down,
-so recognizing your code as O(n2) or higher
+mon use of big O analysis is to avoid accidentally writing an O(n^2) algorithm
+when an O(n log n) or O(n) algorithm exists. The O(n^2) order is when algorithms dramatically slow down,
+so recognizing your code as O(n^2) or higher
 should give you pause. Perhaps there’s a different algorithm that can solve the
 problem faster. In these cases, taking a data structure and algorithms (DSA)
-course, whether at a university or online, can be helpful.
-We also call O(n2) quadratic time. Algorithms could have O(n3), or cubic
-time, which is slower than O(n2); O(n4), or quartic time, which is slower than
-O(n3); or other polynomial time complexities.
+course, We also call O(n^2) quadratic time. Algorithms could have O(n^3), or cubic
+time, which is slower than O(n^2); O(n^4), or quartic time, which is slower than
+O(n^3); or other polynomial time complexities.
 """
 
 """
@@ -171,7 +170,7 @@ def find_duplicate_books(books):
 book_titles = []
 
 with open('books.txt', 'r') as rf:
-    for book in rf:
-        book_titles.append(book.strip())
+    for title in rf:
+        book_titles.append(title.strip())
 
-# Test the above function to see by your self:
+# Test the above function to see by yourself:
