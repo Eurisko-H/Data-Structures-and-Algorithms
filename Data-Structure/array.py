@@ -1,3 +1,6 @@
+# Why do arrays have constant time access?
+# Dynamic Vs Static arrays -> https://www.geeksforgeeks.org/implementation-of-dynamic-array-in-python/
+
 """
 Challenge #1:
 
@@ -15,13 +18,13 @@ Notes:
 """
 
 
-def last(l: list, n: int) -> []:
-    if n > len(l):
+def last(array: list, n: int) -> []:
+    if n > len(array):
         return "invalid"
     elif n < 1:
         return []
     else:
-        return l[-n:]
+        return array[-n:]
 
 
 """
@@ -112,7 +115,7 @@ def max_and_min(input_str: str) -> str:
 # Describe the difference between an in-place algorithm and out-of-place algorithm.
 def double_nums_in_place(int_list):
     # in place will modify the array that's passed in to the function
-    # Save space / faster
+    # Save space / faster -> But they have side effects
     # https://en.wikipedia.org/wiki/In-place_algorithm
     for idx, item in enumerate(int_list):
         int_list[idx] = item * 2
@@ -189,11 +192,12 @@ same backward or forward. This includes capital letters, punctuation. and other 
 Given a string. write a unction that checks if the input is valid palindrome.
 
 Examples:
-- "racecar"    -> True
+- "race car"    -> True
 - "anna"       -> True
 - "12345"      -> False
 - "12321"      -> True
 - "race a car" -> False
+- "do geese see god" -> True (from young sheldon)
 
 Notes:
 - Try to solve this challenge without using the reverse of the input string; use a for loop
@@ -203,12 +207,32 @@ to iterate through the string and make the neccessary companions
 
 # BigO -> O(n)
 def is_palindrome(word: str) -> bool:
+    word = word.replace(' ', '')
     start_index, end_index = 0, len(word) - 1
     while start_index < end_index:
         if word[start_index] != word[end_index]:
             return False
         start_index += 1
         end_index -= 1
+    return True
+
+
+# https://leetcode.com/problems/palindrome-number/
+
+def is_palindrome_for_integer(num: int) -> bool:
+    if num < 0:
+        return False
+    div = 1
+    while num >= 10 * div:
+        div *= 10
+    print(div)
+    while num:
+        right = num % 10
+        left = num // div
+        if right != left:
+            return False
+        num = (num % div) // 10
+        div = div / 100
     return True
 
 
