@@ -207,7 +207,7 @@ to iterate through the string and make the neccessary companions
 
 # BigO -> O(n)
 def is_palindrome(word: str) -> bool:
-    word = word.replace(' ', '')
+    word = ''.join(filter(str.isalnum, word)).lower()
     start_index, end_index = 0, len(word) - 1
     while start_index < end_index:
         if word[start_index] != word[end_index]:
@@ -315,7 +315,7 @@ def max_profit(prices: list[int]) -> int:
 
 # BigO -> O(n^2)
 def two_sum_brute_force(nums: list[int], target: int) -> list[int]:
-    for i in range(len(nums) - 1):
+    for i in range(len(nums)):
         for j in range(i + 1, len(nums)):
             if nums[i] + nums[j] == target:
                 return [i, j]
@@ -324,13 +324,14 @@ def two_sum_brute_force(nums: list[int], target: int) -> list[int]:
 # BigO -> O(n)
 def two_sum_dic_way(nums: list[int], target: int) -> list[int]:
     seen = {}
-    for i, num in enumerate(nums):
+    for idx, num in enumerate(nums):
         if target - num in seen:
-            return [seen[target - num], i]
+            return [seen[target - num], idx]
         elif num not in seen:
-            seen[num] = i
+            seen[num] = idx
 
 
+# https://leetcode.com/problems/jump-game/?envType=list&envId=regnb1dt
 # BigO -> O(n)
 def can_jump_greedy(nums: list[int]) -> bool:
     goal = nums[-1]
@@ -338,3 +339,14 @@ def can_jump_greedy(nums: list[int]) -> bool:
         if i + nums[i] >= goal:
             goal = i
     return True if goal == 0 else False
+
+
+# https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+def remove_duplicates(nums: list[int]) -> int:
+    left_pointer = 1
+    for right_pointer in range(1, len(nums)):
+        if nums[right_pointer] != nums[right_pointer - 1]:
+            nums[left_pointer] = nums[right_pointer]
+            left_pointer += 1
+    return left_pointer
+
