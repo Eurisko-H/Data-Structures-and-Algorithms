@@ -350,3 +350,13 @@ def remove_duplicates(nums: list[int]) -> int:
             left_pointer += 1
     return left_pointer
 
+
+# https://leetcode.com/problems/length-of-last-word/?envType=list&envId=regnb1dt
+def length_of_last_word(s: str) -> int:
+    count = 0
+    for letter in s[::-1]:
+        if letter != " ":
+            count += 1
+        if letter == " " and count >= 1:
+            return count
+    return count
