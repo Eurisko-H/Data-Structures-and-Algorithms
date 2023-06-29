@@ -293,7 +293,6 @@ def move_zeroes(nums: list[int]) -> None:
         if num != 0:
             nums[zero_index] = num
             zero_index += 1
-    # O(1)
     for zero in range(1, zero_count + 1):
         nums[-zero] = 0
 
@@ -360,3 +359,19 @@ def length_of_last_word(s: str) -> int:
         if letter == " " and count >= 1:
             return count
     return count
+
+
+def merge(nums1: list[int], m: int, nums2: list[int], n: int) -> None:
+    empty_element = m+n-1
+    while m > 0 and n > 0:
+        if nums2[n-1] > nums1[m-1]:
+            nums1[empty_element] = nums2[n-1]
+            n -= 1
+        else:
+            nums1[empty_element] = nums1[m-1]
+            m -= 1
+        empty_element -= 1
+
+    while n > 0:
+        nums1[empty_element] = nums2[n-1]
+        empty_element, n = empty_element-1, n-1
