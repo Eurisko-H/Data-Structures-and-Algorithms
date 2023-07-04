@@ -147,8 +147,8 @@ def quadratic_example(someData):
 
 #  O(n), Linear Time
 def linear_example(someData):
-    for i in someData:
-        for k in range(1000):
+    for i in someData:  # n steps -> O(n)
+        for k in range(1000):  # 1 * 1000 steps
             print('Something')
 
 
@@ -159,7 +159,7 @@ def i_love_books(books):
         print('BOOKS ARE GREAT!!!')
 
 
-# O(n2) polynomial time operation
+# O(n^2) polynomial time operation
 def find_duplicate_books(books):
     for i in range(len(books) - 1):
         for j in range(i + 1, len(books)):
